@@ -1,0 +1,7 @@
+@misc{QSmellV001,
+  author = {Chen, Qihong and Câmara, Rúben and Campos, José and Souto, André and Ahmed, Iftekhar},
+  title = {{QSmell v0.0.1}},
+  year = {2023},
+  publisher = {GitHub},
+  url = {https://github.com/jose/qsmell}
+}
