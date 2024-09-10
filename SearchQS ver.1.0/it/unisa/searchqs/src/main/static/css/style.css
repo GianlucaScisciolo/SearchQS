@@ -1,0 +1,81 @@
+.custom-button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.icon-label {
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.custom-image-logo, 
+.custom-image-q-gate, 
+.custom-image-qubit {
+    width: 50%;
+    height: auto;
+}
+
+.fa-logo, 
+.fa-q-gate, 
+.fa-qubit {
+    width: 15%;
+    height: auto;
+}
+
+.fa-logo-2x, 
+.fa-q-gate-2x, 
+.fa-qubit-2x {
+    width: 30%;
+    height: auto;
+}
+
+.fa-logo-4x, 
+.fa-q-gate-4x, 
+.fa-qubit-4x {
+    width: 60%;
+    height: auto;
+}
+
+.fa-q-gate-6x {
+    width: 90%;
+    height: auto;
+}
+
+.q-systems-div,
+.confirm-div, 
+.list-div, 
+.add-div {
+    padding: auto;
+    border-radius: 10px;
+}
+
+.q-systems-div, 
+.confirm-div, 
+.list-div, 
+.add-div {
+    width: 100%;
+}
+
+.cell {
+    padding: 20px;
+}
+
+.cell-op {
+    display: flex;
+    justify-content: space-between;
+}
+
+input, 
+textarea {
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
