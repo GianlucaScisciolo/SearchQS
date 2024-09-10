@@ -1,0 +1,12 @@
+File:
+	Nome: 
+		file1.py
+	Analisi eseguite:
+		- Tutte le transpilazioni.
+		- Nessuna transpilazione.
+File:
+	Nome:
+		files/file2.py
+	Analisi eseguite:
+		- Tutte le transpilazioni.
+		- Nessuna transpilazione.

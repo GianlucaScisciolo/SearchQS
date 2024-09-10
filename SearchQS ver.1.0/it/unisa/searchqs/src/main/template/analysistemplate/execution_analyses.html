@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Esecuzione analisi</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_theme.css') }}">
+    </head>
+
+<body>
+    <body>
+        {% include 'fragmenttemplate/header.html' %}
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form>
+                        <input type="hidden" id="id_qs" name="id_qs" value="{{ params['id_qs'] }}">
+                        <input type="hidden" id="name_qs" name="name_qs" value="{{ params['name_qs'] }}">
+                        <input type="hidden" id="files_json" name="files_json" value="{{ params['files_json'] }}">
+                        <input type="hidden" id="transpilations_json" name="transpilations_json" value="{{ params['transpilations_json'] }}">
+                        <div class="row form-group">
+                            <div class="col">
+                                <h2>File python presenti</h2>
+                                <h4>Seleziona i file da analizzare</h4>
+                            </div>
+                        </div>
+                        {% for file in params['python_files'] %}
+                        <div class="row form-group">
+                            <div class="col-sm-12 text-left">
+                                <input type="checkbox" name="files_selected" id="{{file}}" value="{{ file }}">{{ file }}<!-- -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="row form-group">
+                            <div class="col-sm-12">
+                                <pre>
+                                    <div class="error-text">{{params['errors']['files_selected']}}</div>
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col">
+                                <h2>Transpilazioni possibili</h2>
+                                <h4>Seleziona le transpilazioni a cui sei interessato</h4>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12">
+                                <input type="checkbox" name="transpilations_selected" value="None">Nessuna transpilazione
+                            </div>
+                        </div>
+                        {% for t in params['transpilations'] %}
+                        <div class="row form-group">
+                            <div class="col-sm-12">
+                                <input type="checkbox" name="transpilations_selected" value="{{ t }}">{{ t }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="row form-group">
+                            <div class="col-sm-12">
+                                <pre>
+                                    <div class="error-text">{{params['errors']['transpilations_selected']}}</div>
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col">
+                                <h2>Livello di ottimizzazione delle transpilazioni</h2>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col">
+                                <select name="optimization" id="optimization">
+                                    <option value="-1">Scegli il livello di ottimizzazione</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12">
+                                <pre>
+                                    <div class="error-text">{{params['errors']['optimization']}}</div>
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-6">
+                                <button type="submit" formaction="{{url_for('analysis.execution_analyses')}}" formmethod="post" class="custom-button">
+                                    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                                    <div class="icon-label">Esegui le analisi</div>
+                                </button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="submit" formaction="{{url_for('analysis.display_form_loading_q_system')}}" formmethod="post" class="custom-button">
+                                    <input type="hidden" id="name_button" name="name_button" value="cancel_button">
+                                    <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                                    <div class="icon-label">Annulla</div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
