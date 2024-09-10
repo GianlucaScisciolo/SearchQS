@@ -1,0 +1,12 @@
+1. Analizzare solamente del codice non malevolo.
+
+2. Per ogni sistema analizzato, visualizzare il file: "File analizzati.txt".
+
+3. Per la connessione al database modificare i seguenti dati:
+       host="localhost",
+       user="da_inserire",
+       password="da_inserire",
+       database="testsearchqs" # oppure searchqs se non testiamo
+   nei seguenti file Python:
+       it/unisa/searchqs/src/main/model/connection/mysql_connection.py
+       it/unisa/searchqs/src/test/unittest/testmodel/testconnection/test_mysql_connection.py
