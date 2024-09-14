@@ -52,34 +52,34 @@ def randomStringGen(string_length):
 def get_a_mod_15_circuit(a, power):
     if a not in [2,7,8,11,13]:
         raise ValueError("'a' deve essere 2,7,8,11 o 13")
-    c_a_mod_15_circuit = QuantumCircuit(4)
+    a_mod_15_circuit = QuantumCircuit(4)
     for i in range(power):
         if a == 2:
-            c_a_mod_15_circuit.swap(0,1)
-            c_a_mod_15_circuit.swap(1,2)
-            c_a_mod_15_circuit.swap(2,3)
+            a_mod_15_circuit.swap(0,1)
+            a_mod_15_circuit.swap(1,2)
+            a_mod_15_circuit.swap(2,3)
         elif a == 7:
-            c_a_mod_15_circuit.swap(2,3)
-            c_a_mod_15_circuit.swap(1,2)
-            c_a_mod_15_circuit.swap(0,1)
+            a_mod_15_circuit.swap(2,3)
+            a_mod_15_circuit.swap(1,2)
+            a_mod_15_circuit.swap(0,1)
             for q in range(4):
-                c_a_mod_15_circuit.x(q)
+                a_mod_15_circuit.x(q)
         elif a == 8:
-            c_a_mod_15_circuit.swap(2,3)
-            c_a_mod_15_circuit.swap(1,2)
-            c_a_mod_15_circuit.swap(0,1)
+            a_mod_15_circuit.swap(2,3)
+            a_mod_15_circuit.swap(1,2)
+            a_mod_15_circuit.swap(0,1)
         elif a == 11:
-            c_a_mod_15_circuit.swap(1,3)
-            c_a_mod_15_circuit.swap(0,2)
+            a_mod_15_circuit.swap(1,3)
+            a_mod_15_circuit.swap(0,2)
             for q in range(4):
-                c_a_mod_15_circuit.x(q)
+                a_mod_15_circuit.x(q)
         elif a == 13:
-            c_a_mod_15_circuit.swap(0,1)
-            c_a_mod_15_circuit.swap(1,2)
-            c_a_mod_15_circuit.swap(2,3)
+            a_mod_15_circuit.swap(0,1)
+            a_mod_15_circuit.swap(1,2)
+            a_mod_15_circuit.swap(2,3)
             for q in range(4):
-                c_a_mod_15_circuit.x(q)
-    return c_a_mod_15_circuit
+                a_mod_15_circuit.x(q)
+    return a_mod_15_circuit
 
 def get_c_a_mod_15_gate(a, power):
     a_mod_15_circuit = get_a_mod_15_circuit(a, power)
