@@ -215,7 +215,14 @@ class AnalysisServiceImpl(IAnalysisService):
             if num_errors > 0:
                 raise Exception("dati del form per l\'esecuzione delle analisi non validi.")
             file_contents = {}
+            ##################################################
+            """"""
+            print("------------------------------------------------------------------------------------------")
+            print(attributes['files_selected'])
+            print("------------------------------------------------------------------------------------------")
+            # ['VariAlgoritmi/Teletrasporto1Qubit.py']
             for file in attributes['files_selected']:
+                file = "app/" + file
                 with open(f"{file}", 'r') as f:
                     file_contents[file] = f.read()
             source_files_and_names_qc_and_function_calls = []
@@ -231,6 +238,11 @@ class AnalysisServiceImpl(IAnalysisService):
                 function_calls = a_op.get_function_calls(sf.path)
                 names_qc = a_op.get_names_q_circuits_from_file(sf.path)
                 source_files_and_names_qc_and_function_calls.append((sf, names_qc, function_calls))
+            """"""
+            ##################################################
+
+
+
             """
             2. Se le opzioni del form sono corrette e sono state selezionate allora:
             per ogni file:
@@ -320,7 +332,7 @@ class AnalysisServiceImpl(IAnalysisService):
             return {'success': None, 'error': "Errore durante l\'esecuzone delle analisi. Riprova."}
         finally:
             connection.close()
-        
+            
     def display_analysis(self, attributes):
         connection = None
         r_dao = None

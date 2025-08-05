@@ -1,0 +1,10 @@
+matplotlib==3.10.5
+qiskit==2.1.1
+qiskit_aer==0.17.1
+
+Teletrasporto1Frase
+Clonazione1Frase
+NumeroCasuale
+utils
+NumeroPseudoCasuale
+Teletrasporto1Qubit

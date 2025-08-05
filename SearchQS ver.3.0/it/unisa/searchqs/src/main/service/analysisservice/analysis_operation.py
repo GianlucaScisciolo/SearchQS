@@ -325,10 +325,10 @@ def get_matrix(file_path, name_qc):
     """
     
 def get_id_qubit(qubit: Qubit):
-    return qubit.index
     """
     Questa funzione prende un oggetto Qubit e restituisce il suo indice (index).
     """
+    return qubit._index
 
 def get_id_operation(operation: Instruction):
     params_types = []

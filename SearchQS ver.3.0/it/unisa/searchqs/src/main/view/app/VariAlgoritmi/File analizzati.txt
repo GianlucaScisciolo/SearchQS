@@ -1,0 +1,12 @@
+File:
+	Nome: 
+		NumeroCasuale.py
+	Analisi eseguite:
+		- Tutte le transpilazioni.
+		- Nessuna transpilazione.
+File:
+	Nome:
+		Teletrasporto1Qubit.py
+	Analisi eseguite:
+		- Tutte le transpilazioni.
+		- Nessuna transpilazione.
