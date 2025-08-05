@@ -1,0 +1,11 @@
+File:
+	Nome: 
+		EsecuzioneShor15.py
+	Analisi eseguite:
+		- Nessuna transpilazione.
+File:
+	Nome:
+		VisualizzazioneCircuitiShor15.py
+	Analisi eseguite:
+		- Tutte le transpilazioni.
+		- Nessuna transpilazione.

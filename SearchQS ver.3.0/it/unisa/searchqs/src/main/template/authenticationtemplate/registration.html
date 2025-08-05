@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Registrazione</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_theme.css') }}">
+    </head>
+
+    <body>
+        {% include 'fragmenttemplate/header.html' %}
+        <br>
+        {% include 'fragmenttemplate/links.html' %}
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form>
+                        <!-- name_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="name_ru">Nome</label>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <input type="text" id="name_ru" name="name_ru" placeholder="Nome" value="{{params['name_ru']}}">
+                                <pre>
+<div class="error-text">{{params['errors']['name_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+
+                            </div>
+                        </div>
+                        <br>
+                        <!-- surname_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="surname_ru">Cognome</label>
+                            </div>
+                            <div class="col-sm-4 text-center"> 
+                                <input type="text" id="surname_ru" name="surname_ru" placeholder="Cognome" value="{{params['surname_ru']}}"> 
+                                <pre>
+<div class="error-text">{{params['errors']['surname_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+
+                            </div>
+                        </div>
+                        <br>
+                        <!-- gender_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="gender_ru">Sesso:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <br> <br>
+                                <input type="radio" id="male" name="gender_ru" value="M"
+                                    {% if params['gender_ru'] == 'M': %}
+                                        checked="checked"
+                                    {% endif %}
+                                >
+                                <label for="male">Maschio</label><br>
+                                <input type="radio" id="female" name="gender_ru" value="F"
+                                    {% if params['gender_ru'] == 'F': %}
+                                        checked="checked"
+                                    {% endif %}    
+                                >
+                                <label for="female">Femmina</label><br>
+                                <input type="radio" id="none" name="gender_ru" value="N"
+                                    {% if params['gender_ru'] == 'N': %}
+                                        checked="checked"
+                                    {% endif %}    
+                                >
+                            <label for="none">Non specificato</label>
+                            <pre>
+<div class="error-text">{{params['errors']['gender_ru']}}</div>
+                            </pre>
+                            </div>
+                            <div class="col-sm-4">
+                            </div>
+                        </div>
+                        <br>
+                        <!-- birthdate_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="birthdate_ru">Data di nascita</label>
+                            </div>
+                            <div class="col-sm-4 text-center"> 
+                                <input type="date" id="birthdate_ru" name="birthdate_ru" placeholder="Data di nascita" value="{{params['birthdate_ru']}}"> 
+                                <pre>
+<div class="error-text">{{params['errors']['birthdate_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                            </div>
+                        </div>
+                        <br>
+                        <!-- birthplace_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                Luogo di nascita:
+                            </div>
+                            <div class="col">
+                                <pre>
+<div class="error-text">{{params['errors']['birthplace_ru']}}</div>
+                                </pre>
+                                <label for="city_birthplace_ru text-left">Città: </label>
+                                <input type="text" id="city_birthplace_ru" name="city_birthplace_ru" placeholder="Città" value="{{params['city_birthplace_ru']}}">
+                                <br><br>
+                                <label for="nation_birthplace_ru text-left">Nazione: </label>
+                                <input type="text" id="nation_birthplace_ru" name="nation_birthplace_ru" placeholder="Nazione" value="{{params['nation_birthplace_ru']}}">
+                            </div>
+                            <div class="col">  
+                            </div>
+                        </div>
+                        <br>
+                        <!-- nationality_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="nationality_ru">Nazionalità</label>
+                            </div>
+                            <div class="col-sm-4 text-center"> 
+                                <input type="text" id="nationality_ru" name="nationality_ru" placeholder="Nazionalità" value="{{params['nationality_ru']}}"> 
+                                <pre>
+<div class="error-text">{{params['errors']['nationality_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                            </div>
+                        </div>
+                        <br>
+                        <!-- profession_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="profession_ru">Professione</label>
+                            </div>
+                            <div class="col-sm-4 text-center"> 
+                                <input type="text" id="profession_ru" name="profession_ru" placeholder="Professione" value="{{params['profession_ru']}}"> 
+                                <pre>
+<div class="error-text">{{params['errors']['profession_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                            </div>
+                        </div>
+                        <br>
+                        <!-- num_cellphone_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="num_cellphone_ru">Numero di cellulare</label>
+                            </div>
+                            <div class="col-sm-4 text-center"> 
+                                <input type="text" id="num_cellphone_ru" name="num_cellphone_ru" placeholder="Numero di cellulare" value="{{params['num_cellphone_ru']}}"> 
+                                <pre>
+<div class="error-text">{{params['errors']['num_cellphone_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                
+                            </div>
+                        </div>
+                        <br>
+                        <!-- residential_address_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                Indirizzo di residenza
+                            </div>
+                            <div class="col-sm-4">
+                                <pre>
+<div class="error-text">{{params['errors']['residential_address_ru']}}</div>
+                                </pre>
+                                <label for="name_ra" class="text-left">Nome: </label>
+                                <input type="text" id="name_ra" name="name_ra" placeholder="Nome" class="text-right" value="{{params['name_ra']}}">
+                                <br><br>
+                                <label for="number_ra" class="text-left">Numero civico: </label>
+                                <input type="number" id="number_ra" name="number_ra" placeholder="Numero civico" class="text-right" value="{{params['number_ra']}}">
+                                <br><br>
+                                <label for="city_ra" class="text-left">Città: </label>
+                                <input type="text" id="city_ra" name="city_ra" placeholder="Città" class="text-right" value="{{params['city_ra']}}">
+                                <br><br>
+                                <label for="province_ra" class="text-left">Provincia: </label>
+                                <input type="text" id="province_ra" name="province_ra" placeholder="Provincia" class="text-right" value="{{params['province_ra']}}">
+                                <br><br>
+                                <label for="cap_ra" class="text-left">CAP: </label>
+                                <input type="text" id="cap_ra" name="cap_ra" placeholder="CAP" class="text-right" value="{{params['cap_ra']}}">
+                            </div>
+                            <div class="col-sm-4 text-left">
+                            </div>
+                        </div>
+                        <br>
+                        <!-- email_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="email_ru">Email</label>
+                            </div>
+                            <div class="col-sm-4 text-center"> 
+                                <input type="text" id="email_ru" name="email_ru" placeholder="Email" value="{{params['email_ru']}}"> 
+                                <pre>
+<div class="error-text">{{params['errors']['email_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+
+                            </div>
+                        </div>
+                        <br>
+                        <!-- password_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="password_ru">Password</label>
+                            </div>
+                            <div class="col-sm-4 text-center"> 
+                                <input type="password" id="password_ru" name="password_ru" placeholder="Password" value="{{params['password_ru']}}"> 
+                                <pre>
+<div class="error-text">{{params['errors']['password_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <a onclick="displayUndisplayPassword('password_ru', 'display_undisplay_password_button')" id="display_undisplay_password_button" class="custom-button">
+                                    <i class="fa fa-eye fa-2x" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- confirm_password_ru -->
+                        <div class="row form-group">
+                            <div class="col-sm-4 text-right">
+                                <label for="confirm_password_ru">Conferma password</label>
+                            </div>
+                            <div class="col-sm-4 text-center"> 
+                                <input type="password" id="confirm_password_ru" name="confirm_password_ru" placeholder="Conferma password" value="{{params['confirm_password_ru']}}"> 
+                                <pre>
+<div class="error-text">{{params['errors']['confirm_password_ru']}}</div>
+                                </pre>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <a onclick="displayUndisplayPassword('confirm_password_ru', 'display_undisplay_conf_password_button')" id="display_undisplay_conf_password_button" class="custom-button">
+                                    <i class="fa fa-eye fa-2x" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- buttons -->
+                        <div class="row form-group">
+                            <div class="col-sm-6 text-right">
+                                <button type="submit" formaction="{{ url_for('authentication.registration') }}" formmethod="post" class="custom-button">
+                                    <i class="fa fa-check fa-2x" aria-hidden="true"></i>
+                                    <div class="icon-label">Conferma</div>
+                                </button>
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <button type="submit" formaction="{{ url_for('home') }}" formmethod="post" class="custom-button">
+                                    <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                                    <div class="icon-label">Annulla</div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/action_form.js') }}"></script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+

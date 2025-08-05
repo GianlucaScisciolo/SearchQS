@@ -1,0 +1,6 @@
+File:
+	Nome: 
+		SingolaEsecuzioneHybridKMeans.py
+	Analisi eseguite:
+		- Tutte le transpilazioni.
+		- Nessuna transpilazione.

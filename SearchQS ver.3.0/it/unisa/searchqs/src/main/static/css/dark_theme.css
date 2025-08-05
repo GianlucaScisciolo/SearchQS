@@ -1,0 +1,81 @@
+html, 
+body {
+    background-color: #16161A;
+}
+
+.custom-button {
+    color: #7F5AF0;
+}
+
+.icon-label {
+    color: #FFFFFE;
+}
+
+.custom-button:hover, 
+.icon-label:hover {
+    color: #2CB67D;
+}
+
+.fa-logo:hover, 
+.fa-logo-2x:hover, 
+.fa-logo-4x:hover {
+    content: url("/static/img/logo_2.png");
+}
+
+.fa-q-gate:hover, 
+.fa-q-gate-2x:hover, 
+.fa-q-gate-4x:hover,
+.fa-q-gate-6x:hover {
+    content: url("/static/img/q_gate_2.png");
+}
+
+.fa-qubit:hover, 
+.fa-qubit-2x:hover, 
+.fa-qubit-4x:hover {
+    content: url("/static/img/qubit_2.png");
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+    color: #FFFFFE
+}
+
+p,
+div, 
+pre {
+    color: #94A1B2
+}
+
+label {
+    color: #94A1B2;
+}
+
+input[type='text'],
+input[type="date"],
+input[type="number"],
+input[type="password"], 
+textarea, 
+select {
+    color: #010101;
+}
+
+th {
+    color: #3A4D9F;
+}
+
+.error-text {
+    color: #FF0000;
+}
+
+input.readonly {
+    background-color: #404040;
+}
+
+
+
+
+

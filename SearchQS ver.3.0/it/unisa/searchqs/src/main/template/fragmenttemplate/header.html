@@ -1,0 +1,63 @@
+<div class="col-sm-12">
+    <div class="row"></div>
+        <nav class="mt-3">
+            <div class="row">
+                <div class="col-sm-5">
+                    <a href="{{ url_for('home') }}" class="btn custom-image-logo float-left">
+                        <img src="{{ url_for('static', filename='img/logo_1.png') }}" alt="Logo" class="fa-logo-2x">
+                    </a>
+                </div>
+                
+                <div class="col-sm-3">
+                    <a href="#" class="btn custom-button mx-auto">
+                        <i class="fa fa-sun-o fa-2x" aria-hidden="true"></i>
+                    </a>
+                </div>
+                {% if session == {}: %}
+                    <div class="col-sm-2">
+                        <a href="{{ url_for('authentication.display_form_registration') }}" class="btn custom-button float-right">
+                            <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
+                            <div class="icon-label">Registrati</div>
+                        </a>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <a href="{{ url_for('authentication.display_form_login') }}" class="btn custom-button float-left">
+                            <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+                            <div class="icon-label">Login</div>
+                        </a>
+                    </div>
+                {% else: %}
+                    <div class="col-sm-2">
+                        {% if session['actor'] == "admin": %}
+                            <a href="{{ url_for('user_area.display_administrative_area') }}" class="btn custom-button float-right">
+                                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                <div class="icon-label">Area amministrativa</div>
+                            </a>
+                        {% elif session['actor'] == "registered user": %}
+                            <a href="{{ url_for('user_area.display_user_area') }}" class="btn custom-button float-right">
+                                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                <div class="icon-label">Area utente</div>
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-sm-2">
+                        <a href="{{ url_for('authentication.logout') }}" class="btn custom-button float-left">
+                            <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+                            <div class="icon-label">Logout</div>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </nav> 
+</div>
+
+
+
+
+
+
+
+
+
