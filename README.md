@@ -9,6 +9,6 @@ Un Quantum Code Smell è un problema di progettazione di un circuito quantistico
 
 ## Versioni di SearchQS
 In questa repository sono presenti 3 versioni del progetto:
-- **Versione 1.0:** presente nel branch *ver.-1.0*, versione progettata ed implementata durante il tirocinio interno.
+- **Versione 1.0:** presente nel branch *ver.-1.0*, versione progettata ed implementata durante il tirocinio interno con il laboratorio SeSaLab dell'Università degli studi di Salerno.
 - **Versione 2.0:** presente nel branch *ver.-2.0*, versione aggiornata e modificata durante la scrittura della tesi.
 - **Versione 3.0:** presente nel branch *ver.-3.0*, versione aggiornata e modificata dopo la scrittura della tesi.
