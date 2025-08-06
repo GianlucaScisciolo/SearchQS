@@ -24,7 +24,13 @@
                             <form action="{{ url_for('analysis.display_names_transpilations') }}" method="post">
                                 <button type="submit" class="custom-button">
                                     <i class="fa fa-search fa-4x" aria-hidden="true"></i>
-                                    <div class="icon-label">Analisi eseguite</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Analyses performed
+                                        {% else: %}
+                                            Analisi eseguite
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </form>
                         </div>
@@ -32,7 +38,13 @@
                             <form action="{{ url_for('analysis.display_form_loading_q_system') }}" method="post">
                                 <button type="submit" class="custom-button">
                                     <i class="fa fa-plus fa-4x" aria-hidden="true"></i>
-                                    <div class="icon-label">Nuova analisi</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            New analysis
+                                        {% else: %}
+                                            Nuova analisi
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </form>
                         </div>
@@ -45,7 +57,13 @@
                     <form action="{{ url_for('user_area.display_user_area') }}" method="post">
                         <button type="submit" class="custom-button">
                             <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-                            <div class="icon-label">Torna indietro</div>
+                            <div class="icon-label">
+                                {% if session["lingua"] == "inglese": %} 
+                                    Go back
+                                {% else: %}
+                                    Torna indietro
+                                {% endif %}
+                            </div>
                         </button>
                     </form>
                 </div>

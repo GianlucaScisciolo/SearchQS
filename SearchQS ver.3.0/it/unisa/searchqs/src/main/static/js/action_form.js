@@ -34,19 +34,21 @@ function readMoreReadLessText(index) {
     var moreText = document.getElementById("more-" + index);
     var btnText = document.getElementById("text-" + index);
     var btnIcon = document.getElementById("icon-" + index);
+    var lingua = document.querySelector("#input-lingua").value;
 
     if (moreText.style.display === "none") {
         moreText.style.display = "inline";
-        btnText.innerHTML = "Nascondi codice file";
+        btnText.innerHTML = lingua === "italiano" ? "Nascondi codice file" : "Hide code file";
         btnIcon.classList.remove("fa-arrow-left");
         btnIcon.classList.add("fa-minus");
     } else {
         moreText.style.display = "none";
-        btnText.innerHTML = "Mostra codice file";
+        btnText.innerHTML = lingua === "italiano" ? "Mostra codice file" : "Show code file";
         btnIcon.classList.remove("fa-minus");
         btnIcon.classList.add("fa-arrow-left");
     }
 }
+
 
 
 

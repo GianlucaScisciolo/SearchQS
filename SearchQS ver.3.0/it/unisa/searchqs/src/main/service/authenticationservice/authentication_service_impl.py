@@ -13,7 +13,7 @@ import src.main.service.utils.security as security
 class AuthenticationServiceImpl(IAuthenticationService):
     
     def display_form_registration(self):
-        if session == {}:
+        if "actor" not in session:
             return {'success': True, 'errors': {}}
         return {'success': None, 'error': 'Utente gia\' loggato.'}
     
@@ -89,7 +89,7 @@ class AuthenticationServiceImpl(IAuthenticationService):
             connection.close()
                         
     def display_form_login(self):
-        if session == {}:
+        if "actor" not in session:
             return {'success': True, 'errors': {}}
         return {'success': None, 'error': "Utente gia\' loggato."}
                        

@@ -25,13 +25,25 @@
                                 <div class="col-sm-6 text-right">
                                     <a href="{{ url_for('user_area.display_personal_data', route='user_area.display_personal_data')}}" class="btn custom-button">
                                         <i class="fa fa-address-card fa-4x" aria-hidden="true"></i>
-                                        <div class="icon-label">Dati personali</div>
+                                        <div class="icon-label">
+                                            {% if session["lingua"] == "inglese": %} 
+                                                Personal data
+                                            {% else: %}
+                                                Dati personali
+                                            {% endif %}
+                                        </div>
                                     </a>
                                 </div>
                                 <div class="col-sm-6 text-left">
                                     <a href="{{ url_for('user_area.display_form_deletion_account') }}" class="btn custom-button">
                                         <i class="fa fa-trash fa-4x" aria-hidden="true"></i>
-                                        <div class="icon-label">Elimina account</div>
+                                        <div class="icon-label">
+                                            {% if session["lingua"] == "inglese": %} 
+                                                Delete account
+                                            {% else: %}
+                                                Elimina account
+                                            {% endif %}
+                                        </div>
                                     </a>
                                 </div>
                             </div>
@@ -45,7 +57,13 @@
                                 <div class="col-sm-12">
                                     <a href="{{ url_for('analysis.display_analysis_area') }}" class='btn custom-button'>
                                         <i class="fa fa-search fa-4x" aria-hidden="true"></i>
-                                        <div class="icon-label">Area analisi</div>
+                                        <div class="icon-label">
+                                            {% if session["lingua"] == "inglese": %} 
+                                                Analysis Area
+                                            {% else: %}
+                                                Area analisi
+                                            {% endif %}
+                                        </div>
                                     </a>
                                 </div>
                             </div>

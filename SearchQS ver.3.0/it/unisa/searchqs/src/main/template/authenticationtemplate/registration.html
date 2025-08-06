@@ -25,7 +25,13 @@
                         <!-- name_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                <label for="name_ru">Nome</label>
+                                <label for="name_ru">
+                                    {% if session["lingua"] == "inglese": %} 
+                                    First name
+                                    {% else: %}
+                                    Nome
+                                    {% endif %}
+                                </label>
                             </div>
                             <div class="col-sm-4 text-center">
                                 <input type="text" id="name_ru" name="name_ru" placeholder="Nome" value="{{params['name_ru']}}">
@@ -41,7 +47,13 @@
                         <!-- surname_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                <label for="surname_ru">Cognome</label>
+                                <label for="surname_ru">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Last name
+                                    {% else: %}
+                                        Cognome
+                                    {% endif %}
+                                </label>
                             </div>
                             <div class="col-sm-4 text-center"> 
                                 <input type="text" id="surname_ru" name="surname_ru" placeholder="Cognome" value="{{params['surname_ru']}}"> 
@@ -57,7 +69,13 @@
                         <!-- gender_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                <label for="gender_ru">Sesso:</label>
+                                <label for="gender_ru">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Gender: 
+                                    {% else: %}
+                                        Sesso: 
+                                    {% endif %}
+                                </label>
                             </div>
                             <div class="col-sm-4">
                                 <br> <br>
@@ -66,19 +84,37 @@
                                         checked="checked"
                                     {% endif %}
                                 >
-                                <label for="male">Maschio</label><br>
+                                <label for="male">
+                                    {% if session["lingua"] == "inglese": %} 
+                                    Male
+                                    {% else: %}
+                                    Maschio
+                                    {% endif %}
+                                </label><br>
                                 <input type="radio" id="female" name="gender_ru" value="F"
                                     {% if params['gender_ru'] == 'F': %}
                                         checked="checked"
                                     {% endif %}    
                                 >
-                                <label for="female">Femmina</label><br>
+                                <label for="female">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Female
+                                    {% else: %}
+                                        Femmina
+                                    {% endif %}
+                                </label><br>
                                 <input type="radio" id="none" name="gender_ru" value="N"
                                     {% if params['gender_ru'] == 'N': %}
                                         checked="checked"
                                     {% endif %}    
                                 >
-                            <label for="none">Non specificato</label>
+                            <label for="none">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Not specified
+                                    {% else: %}
+                                        Non specificato
+                                    {% endif %}
+                            </label>
                             <pre>
 <div class="error-text">{{params['errors']['gender_ru']}}</div>
                             </pre>
@@ -90,7 +126,13 @@
                         <!-- birthdate_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                <label for="birthdate_ru">Data di nascita</label>
+                                <label for="birthdate_ru">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Birthdate
+                                    {% else: %}
+                                        Data di nascita
+                                    {% endif %}
+                                </label>
                             </div>
                             <div class="col-sm-4 text-center"> 
                                 <input type="date" id="birthdate_ru" name="birthdate_ru" placeholder="Data di nascita" value="{{params['birthdate_ru']}}"> 
@@ -105,16 +147,32 @@
                         <!-- birthplace_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                Luogo di nascita:
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Birthplace
+                                    {% else: %}
+                                        Luogo di nascita
+                                    {% endif %}
                             </div>
                             <div class="col">
                                 <pre>
 <div class="error-text">{{params['errors']['birthplace_ru']}}</div>
                                 </pre>
-                                <label for="city_birthplace_ru text-left">Città: </label>
+                                <label for="city_birthplace_ru text-left">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        City: 
+                                    {% else: %}
+                                        Città: 
+                                    {% endif %} 
+                                </label>
                                 <input type="text" id="city_birthplace_ru" name="city_birthplace_ru" placeholder="Città" value="{{params['city_birthplace_ru']}}">
                                 <br><br>
-                                <label for="nation_birthplace_ru text-left">Nazione: </label>
+                                <label for="nation_birthplace_ru text-left">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Nation
+                                    {% else: %}
+                                        Nazione: 
+                                    {% endif %} 
+                                </label>
                                 <input type="text" id="nation_birthplace_ru" name="nation_birthplace_ru" placeholder="Nazione" value="{{params['nation_birthplace_ru']}}">
                             </div>
                             <div class="col">  
@@ -124,7 +182,13 @@
                         <!-- nationality_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                <label for="nationality_ru">Nazionalità</label>
+                                <label for="nationality_ru">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Nationality
+                                    {% else: %}
+                                        Nazionalità
+                                    {% endif %}
+                                </label>
                             </div>
                             <div class="col-sm-4 text-center"> 
                                 <input type="text" id="nationality_ru" name="nationality_ru" placeholder="Nazionalità" value="{{params['nationality_ru']}}"> 
@@ -139,7 +203,13 @@
                         <!-- profession_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                <label for="profession_ru">Professione</label>
+                                <label for="profession_ru">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Profession
+                                    {% else: %}
+                                        Professione
+                                    {% endif %}
+                                </label>
                             </div>
                             <div class="col-sm-4 text-center"> 
                                 <input type="text" id="profession_ru" name="profession_ru" placeholder="Professione" value="{{params['profession_ru']}}"> 
@@ -154,7 +224,13 @@
                         <!-- num_cellphone_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                <label for="num_cellphone_ru">Numero di cellulare</label>
+                                <label for="num_cellphone_ru">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Cell number
+                                    {% else: %}
+                                        Numero di cellulare
+                                    {% endif %}
+                                </label>
                             </div>
                             <div class="col-sm-4 text-center"> 
                                 <input type="text" id="num_cellphone_ru" name="num_cellphone_ru" placeholder="Numero di cellulare" value="{{params['num_cellphone_ru']}}"> 
@@ -170,22 +246,50 @@
                         <!-- residential_address_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                Indirizzo di residenza
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Residential address
+                                    {% else: %}
+                                        Indirizzo di residenza
+                                    {% endif %}
                             </div>
                             <div class="col-sm-4">
                                 <pre>
 <div class="error-text">{{params['errors']['residential_address_ru']}}</div>
                                 </pre>
-                                <label for="name_ra" class="text-left">Nome: </label>
+                                <label for="name_ra" class="text-left">
+                                    {% if session["lingua"] == "inglese": %} 
+                                    Name: 
+                                    {% else: %}
+                                    Nome: 
+                                    {% endif %}
+                                </label>
                                 <input type="text" id="name_ra" name="name_ra" placeholder="Nome" class="text-right" value="{{params['name_ra']}}">
                                 <br><br>
-                                <label for="number_ra" class="text-left">Numero civico: </label>
+                                <label for="number_ra" class="text-left">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        House number
+                                    {% else: %}
+                                        Numero civico: 
+                                    {% endif %}
+                                </label>
                                 <input type="number" id="number_ra" name="number_ra" placeholder="Numero civico" class="text-right" value="{{params['number_ra']}}">
                                 <br><br>
-                                <label for="city_ra" class="text-left">Città: </label>
+                                <label for="city_ra" class="text-left">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        City: 
+                                    {% else: %}
+                                        Città: 
+                                    {% endif %}
+                                </label>
                                 <input type="text" id="city_ra" name="city_ra" placeholder="Città" class="text-right" value="{{params['city_ra']}}">
                                 <br><br>
-                                <label for="province_ra" class="text-left">Provincia: </label>
+                                <label for="province_ra" class="text-left">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Province: 
+                                    {% else: %}
+                                        Provincia: 
+                                    {% endif %} 
+                                </label>
                                 <input type="text" id="province_ra" name="province_ra" placeholder="Provincia" class="text-right" value="{{params['province_ra']}}">
                                 <br><br>
                                 <label for="cap_ra" class="text-left">CAP: </label>
@@ -232,7 +336,13 @@
                         <!-- confirm_password_ru -->
                         <div class="row form-group">
                             <div class="col-sm-4 text-right">
-                                <label for="confirm_password_ru">Conferma password</label>
+                                <label for="confirm_password_ru">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Confirm password 
+                                    {% else: %}
+                                        Conferma password 
+                                    {% endif %}
+                                </label>
                             </div>
                             <div class="col-sm-4 text-center"> 
                                 <input type="password" id="confirm_password_ru" name="confirm_password_ru" placeholder="Conferma password" value="{{params['confirm_password_ru']}}"> 
@@ -252,13 +362,25 @@
                             <div class="col-sm-6 text-right">
                                 <button type="submit" formaction="{{ url_for('authentication.registration') }}" formmethod="post" class="custom-button">
                                     <i class="fa fa-check fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Conferma</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Confirm
+                                        {% else: %}
+                                            Conferma
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                             <div class="col-sm-6 text-left">
                                 <button type="submit" formaction="{{ url_for('home') }}" formmethod="post" class="custom-button">
                                     <i class="fa fa-times fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Annulla</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Cancel
+                                        {% else: %}
+                                            Annulla
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                         </div>

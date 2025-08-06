@@ -1,4 +1,5 @@
 from qiskit import transpile
+from qiskit import transpile
 from qiskit import QuantumCircuit, transpile
 from qiskit.visualization import plot_histogram, plot_bloch_multivector
 from qiskit_aer import Aer
@@ -42,3 +43,5 @@ print(f"valore teletrasportato: {max(counts, key=counts.get)[0]}")
 
 
 teleportation_circuit = transpile(teleportation_circuit, basis_gates=['cx', 'rx', 'ry', 'rz', 'p'], optimization_level=2)
+
+teleportation_circuit = transpile(teleportation_circuit, basis_gates=['ecr', 'id', 'rz', 'sx', 'x'], optimization_level=3)

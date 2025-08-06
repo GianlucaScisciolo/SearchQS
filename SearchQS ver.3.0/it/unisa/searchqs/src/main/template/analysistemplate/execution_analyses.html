@@ -27,8 +27,20 @@
                         <input type="hidden" id="transpilations_json" name="transpilations_json" value="{{ params['transpilations_json'] }}">
                         <div class="row form-group">
                             <div class="col">
-                                <h2>File python presenti</h2>
-                                <h4>Seleziona i file da analizzare</h4>
+                                <h2>
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Python files present 
+                                    {% else: %}
+                                        File Python presenti 
+                                    {% endif %}
+                                </h2>
+                                <h4>
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Select files to analyze 
+                                    {% else: %}
+                                        Seleziona i file da analizzare 
+                                    {% endif %}
+                                </h4>
                             </div>
                         </div>
                         {% for file in params['python_files'] %}
@@ -47,8 +59,20 @@
                         </div>
                         <div class="row form-group">
                             <div class="col">
-                                <h2>Transpilazioni possibili</h2>
-                                <h4>Seleziona le transpilazioni a cui sei interessato</h4>
+                                <h2>
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Possible transpilations 
+                                    {% else: %}
+                                        Transpilazioni possibili 
+                                    {% endif %}
+                                </h2>
+                                <h4>
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Select the transpilations in which you are interested 
+                                    {% else: %}
+                                        Seleziona le transpilazioni a cui sei interessato 
+                                    {% endif %}
+                                </h4>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -72,13 +96,25 @@
                         </div>
                         <div class="row form-group">
                             <div class="col">
-                                <h2>Livello di ottimizzazione delle transpilazioni</h2>
+                                <h2>
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Transpilations optimization level 
+                                    {% else: %}
+                                        Livello di ottimizzazione delle transpilazioni 
+                                    {% endif %}
+                                </h2>
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col">
                                 <select name="optimization" id="optimization">
-                                    <option value="-1">Scegli il livello di ottimizzazione</option>
+                                    <option value="-1">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Choose the level of optimization 
+                                        {% else: %}
+                                            Scegli il livello di ottimizzazione 
+                                        {% endif %}
+                                    </option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -97,14 +133,26 @@
                             <div class="col-sm-6">
                                 <button type="submit" formaction="{{url_for('analysis.execution_analyses')}}" formmethod="post" class="custom-button">
                                     <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Esegui le analisi</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            run the analysis
+                                        {% else: %}
+                                            Esegui le analisi
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                             <div class="col-sm-6">
                                 <button type="submit" formaction="{{url_for('analysis.display_form_loading_q_system')}}" formmethod="post" class="custom-button">
                                     <input type="hidden" id="name_button" name="name_button" value="cancel_button">
                                     <i class="fa fa-times fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Annulla</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Cancel
+                                        {% else: %}
+                                            Annulla
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                         </div>

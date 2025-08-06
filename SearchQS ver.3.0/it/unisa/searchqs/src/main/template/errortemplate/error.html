@@ -17,7 +17,11 @@
         {% include 'fragmenttemplate/header.html' %}
         <br>
         <div class="container">
-            Errore!!
+            {% if session["lingua"] == "inglese": %} 
+                Error.
+            {% else: %}
+                Errore.
+            {% endif %}
         </div>
     </body>
 </html>

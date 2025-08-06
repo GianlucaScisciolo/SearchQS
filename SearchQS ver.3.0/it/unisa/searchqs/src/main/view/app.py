@@ -4,6 +4,7 @@ sys.path.append("../../..")
 import secrets
 from flask import Flask, render_template, request, redirect, url_for, session
 
+from src.main.view.sito_view import sito_bp
 from src.main.view.authentication_view import authentication_bp
 from src.main.view.user_area_view import user_area_bp
 from src.main.view.analysis_view import analysis_bp
@@ -17,6 +18,7 @@ app.secret_key = secrets.token_hex(16)
 def home():
     return render_template('home.html')
 
+app.register_blueprint(sito_bp)
 app.register_blueprint(authentication_bp)
 app.register_blueprint(user_area_bp)
 app.register_blueprint(analysis_bp)

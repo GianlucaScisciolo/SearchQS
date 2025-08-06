@@ -19,7 +19,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    Sei sicuro di voler eliminare il tuo account?
+                    {% if session["lingua"] == "inglese": %} 
+                        Are you sure you want to delete your account?
+                    {% else: %}
+                        Sei sicuro di voler eliminare il tuo account?
+                    {% endif %}
                 </div>
             </div>
             <div class="row">
@@ -30,13 +34,25 @@
                                 <input type="hidden" id="route" name="route" value="user_area.deletion_account">
                                 <button type="submit" formaction="{{url_for('user_area.deletion_account')}}" formmethod="post" class="custom-button">
                                     <i class="fa fa-check fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Conferma</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Confirm
+                                        {% else: %}
+                                            Conferma
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                             <div class="col-sm-6 text-left">
                                 <button type="submit" formaction="{{url_for('user_area.display_user_area')}}" formmethod="post" class="custom-button">
                                     <i class="fa fa-times fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Annulla</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Cancel
+                                        {% else: %}
+                                            Annulla
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                         </div>

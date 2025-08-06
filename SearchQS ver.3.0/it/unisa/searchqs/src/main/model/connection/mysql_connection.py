@@ -8,10 +8,10 @@ class MySQLConnection:
     def open(self):
         try:
             self.connection = mysql.connector.connect (
-                host="host",
-                user="user",
-                password="password",
-                database="database"
+                host="localhost",
+                user="root",
+                password="utente",
+                database="searchqs"
             )
             self.cursor = self.connection.cursor()
             return True

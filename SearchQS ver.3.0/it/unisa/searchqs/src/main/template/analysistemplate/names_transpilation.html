@@ -16,7 +16,15 @@
     <body>
         {% include 'fragmenttemplate/header.html' %}
         <br>
-        <center><h2>Scegliere le analisi eseguite in base al nome della transpilazione:</h2></center>
+        <center>
+            <h2>
+                {% if session["lingua"] == "inglese": %} 
+                    You choose the analyses performed according to the name of the transpilation:
+                {% else: %}
+                    Scegliere le analisi eseguite in base al nome della transpilazione:
+                {% endif %}
+            </h2>
+        </center>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -26,7 +34,13 @@
                                 <input type="hidden" name="name_transpilation" id="name_transpilation" value="None">
                                 <button type="submit" class="custom-button">
                                     <i class="fa fa-search fa-4x" aria-hidden="true"></i>
-                                    <div class="icon-label">Nessuna traspilazione</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            No transpilation
+                                        {% else: %}
+                                            Nessuna transpilazione
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </form>
                         </div>
@@ -65,7 +79,13 @@
                     <form action="{{ url_for('analysis.display_analysis_area') }}" method="post">
                         <button type="submit" class="custom-button">
                             <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-                            <div class="icon-label">Torna indietro</div>
+                            <div class="icon-label">
+                                {% if session["lingua"] == "inglese": %} 
+                                    Go back
+                                {% else: %}
+                                    Torna indietro
+                                {% endif %}
+                            </div>
                         </button>
                     </form>
                 </div>

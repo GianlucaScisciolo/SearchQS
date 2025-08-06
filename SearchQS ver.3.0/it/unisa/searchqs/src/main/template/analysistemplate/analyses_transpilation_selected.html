@@ -20,16 +20,47 @@
             <div class="row">
                 <div class="col-sm-12">
                     {% if params['name_transpilation'] != "None" %}
-                        <h2>Analisi con transpilazione: {{ params['name_transpilation'] }}</h2>
+                        <h2>
+                            {% if session["lingua"] == "inglese": %} 
+                                Analysis with the transpilation: 
+                            {% else: %}
+                                Analisi con la transpilazione: 
+                            {% endif %}
+                            {{ params['name_transpilation'] }}
+                        </h2>
                     {% else %}
-                        <h2>Analisi senza transpilazione</h2>
+                        <h2>
+                            {% if session["lingua"] == "inglese": %} 
+                                Analysis without transpilation
+                            {% else: %}
+                                Analisi senza transpilazione
+                            {% endif %}
+                        </h2>
                     {% endif %}
                     {% if params["analyses"] != [] %}
                         <table>
                             <tr class="text-center">
-                                <th class="cell">Sistema quantistico</th>
-                                <th class="cell">Data di esecuzione</th>
-                                <th class="cell">Operazioni</th>
+                                <th class="cell">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Quantum system
+                                    {% else: %}
+                                        Sistema quantistico
+                                    {% endif %}
+                                </th>
+                                <th class="cell">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Execution date
+                                    {% else: %}
+                                        Data di esecuzione
+                                    {% endif %}
+                                </th>
+                                <th class="cell">
+                                {% if session["lingua"] == "inglese": %} 
+                                    Operations
+                                {% else: %}
+                                    Operazioni
+                                {% endif %}
+                                </th>
                             </tr>
                             {% for a in params['analyses'] %}
                                 <tr class="text-center">
@@ -45,13 +76,25 @@
                                             <input type="hidden" name="optimization" id="optimization" value="{{a['analysis'].optimization}}">
                                             <button type="submit" formaction="{{url_for('analysis.display_analysis')}}" formmethod="post" class="custom-button">
                                                 <i class="fa fa-info fa-2x" aria-hidden="true"></i>
-                                                <div class="icon-label">Dettagli analisi</div>
+                                                <div class="icon-label">
+                                                {% if session["lingua"] == "inglese": %} 
+                                                    Analysis details
+                                                {% else: %}
+                                                    Dettagli analisi
+                                                {% endif %}
+                                                </div>
                                             </button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <button type="submit" formaction="{{url_for('analysis.display_form_deletion_analysis')}}" formmethod="post" class="custom-button">
                                                 <input type="hidden" name="route" id="route" value="analysis.display_analyses_transpilation_selected">
                                                 <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-                                                <div class="icon-label">Elimina analisi</div>
+                                                <div class="icon-label">
+                                                    {% if session["lingua"] == "inglese": %} 
+                                                        Delete analysis
+                                                    {% else: %}
+                                                        Elimina analisi
+                                                    {% endif %}
+                                                </div>
                                             </button>
                                         </form>
                                     </td>
@@ -59,7 +102,11 @@
                             {% endfor %}
                         </table>
                     {% else: %}
-                        Nessuna analisi eseguita.
+                        {% if session["lingua"] == "inglese": %} 
+                            No analyses performed.
+                        {% else: %}
+                            Nessuna analisi eseguita.
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -71,7 +118,13 @@
                             <div class="col-sm-12 text-center">
                                 <button type="submit" formaction="{{url_for('analysis.display_names_transpilations')}}" formmethod="post" class="custom-button">
                                     <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Torna indietro</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Go back
+                                        {% else: %}
+                                            Torna indietro
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                         </div>

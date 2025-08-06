@@ -19,7 +19,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    Sei sicuro di voler eliminare l'analisi selezionata?
+                    {% if session["lingua"] == "inglese": %} 
+                        Are you sure you want to delete the selected analysis?
+                    {% else: %}
+                        Sei sicuro di voler eliminare l'analisi selezionata?
+                    {% endif %}
                 </div>
             </div>
             <div class="row">
@@ -32,7 +36,13 @@
                                 <input type="hidden" id="id_analysis" name="id_analysis" value="{{params['id_analysis']}}">
                                 <button type="submit" formaction="{{url_for('analysis.deletion_analysis')}}" formmethod="post" class="custom-button">
                                     <i class="fa fa-check fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Conferma</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Confirm
+                                        {% else: %}
+                                            Conferma
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                             <div class="col-sm-6 text-left">
@@ -43,7 +53,13 @@
                                 <input type="hidden" name="name_transpilation" id="name_transpilation" value="{{params['name_transpilation']}}">
                                 <button type="submit" formaction="{{url_for(params['route'])}}" formmethod="post" class="custom-button">
                                     <i class="fa fa-times fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Annulla</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Cancel
+                                        {% else: %}
+                                            Annulla
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                         </div>

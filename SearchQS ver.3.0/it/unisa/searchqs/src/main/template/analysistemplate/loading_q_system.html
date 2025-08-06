@@ -20,15 +20,24 @@
                 <div class="col-sm-12">
                     <form enctype="multipart/form-data">
                         <div class="row form-group">        
-                            <div class="col-sm-4 text-right">
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <input type="file" id="file" name="file" accept=".zip">
+                            <div class="col-sm text-center" style="border: #000000 solid 1px;">
+                                <input type="file" id="file" name="file" accept=".zip" style="display: none;">
+                                <input 
+                                    type="hidden" 
+                                    id="input-lingua" 
+                                    value="{{ 'inglese' if session.get('lingua') == 'inglese' else 'italiano' }}"
+                                />
+                                <button type="button" id="uploadBtn">
+                                    {% if session["lingua"] == "inglese": %} 
+                                        Select the ZIP file
+                                    {% else: %}
+                                        Seleziona il file ZIP
+                                    {% endif %}
+                                </button>
+                                <p id="fileName"></p>
                                 <pre>
-<div class="error-text">{{params['errors']['file']}}</div>
+                                    <div class="error-text">{{params['errors']['file']}}</div>
                                 </pre>
-                            </div>
-                            <div class="col-sm-4 text-left">
                             </div>
                         </div>
                         <div class="row form-group">
@@ -36,14 +45,26 @@
                                 <input type="hidden" name="name_transpilation" id="name_transpilation" value="{{ params['name_transpilation'] }}">
                                 <button type="submit" formaction="{{url_for('analysis.loading_q_system')}}" formmethod="post" class="custom-button">
                                     <i class="fa fa-check fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Carica sistema quantistico</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Load the quantum system
+                                        {% else: %}
+                                            Carica il sistema quantistico
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                             <div class="col-sm-6 text-left">
                                 <input type="hidden" name="name_transpilation" id="name_transpilation" value="{{ params['name_transpilation'] }}">
                                 <button type="submit" formaction="{{url_for('analysis.display_analysis_area')}}" class="custom-button">
                                     <i class="fa fa-times fa-2x" aria-hidden="true"></i>
-                                    <div class="icon-label">Annulla</div>
+                                    <div class="icon-label">
+                                        {% if session["lingua"] == "inglese": %} 
+                                            Cancel
+                                        {% else: %}
+                                            Annulla
+                                        {% endif %}
+                                    </div>
                                 </button>
                             </div>
                         </div>
@@ -51,6 +72,27 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            const fileInput = document.getElementById('file');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const fileNameDisplay = document.getElementById('fileName');
+            var lingua = document.querySelector("#input-lingua").value;
+
+            // Quando clicchi sul bottone, apri il file input
+            uploadBtn.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            // Quando l'utente seleziona un file, mostra il nome
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = (lingua === "italiano" ? "File selezionato: " : "File selected: ") + fileInput.files[0].name;
+                } else {
+                fileNameDisplay.textContent = '';
+                }
+            });
+        </script>
     </body>
 </html>
 
