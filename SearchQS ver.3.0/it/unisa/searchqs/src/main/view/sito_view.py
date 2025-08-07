@@ -7,9 +7,16 @@ sito_bp = Blueprint('sito', __name__)
 
 @sito_bp.route('/cambio_lingua', methods=['GET', 'POST'])
 def cambio_lingua():
-    service = SitoServiceImpl()
-    response = service.cambio_lingua()
-    return render_template('home.html')
+	service = SitoServiceImpl()
+	response = service.cambio_lingua()
+	return render_template('home.html')
+
+@sito_bp.route('/cambio_tema', methods=['GET', 'POST'])
+def cambio_tema():
+	service = SitoServiceImpl()
+	response = service.cambio_tema()
+	return render_template('home.html')
+
 
 
 

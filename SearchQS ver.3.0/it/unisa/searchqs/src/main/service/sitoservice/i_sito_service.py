@@ -5,6 +5,10 @@ class ISitoService(ABC):
   def cambio_lingua(self):
     """ """
 
+  @abstractmethod
+  def cambio_tema(self):
+    """ """
+
 
 
 

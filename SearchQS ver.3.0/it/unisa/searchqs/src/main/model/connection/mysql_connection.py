@@ -9,9 +9,9 @@ class MySQLConnection:
         try:
             self.connection = mysql.connector.connect (
                 host="localhost",
-                user="root",
-                password="utente",
-                database="searchqs"
+                user="user",
+                password="password",
+                database="database"
             )
             self.cursor = self.connection.cursor()
             return True

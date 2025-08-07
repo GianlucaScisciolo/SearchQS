@@ -1,89 +1,107 @@
 <div>
   <nav class="mt-3">
     <div class="row">
-      <div class="col-sm-5">
-        <a href="{{ url_for('home') }}" class="btn custom-image-logo float-left">
-          <img src="{{ url_for('static', filename='img/logo_1.png') }}" alt="Logo" class="fa-logo-2x">
-        </a>
-      </div>
-
-      <div class="col-sm-3">
-        <a href="#" class="btn custom-button mx-auto">
-          <i class="fa fa-sun-o fa-2x" aria-hidden="true"></i>
-        </a>
-      </div>
-
-      {% if "actor" not in session: %}
-        <div class="col-sm">
-          <a href="{{ url_for('authentication.display_form_registration') }}" class="btn custom-button float-right">
-            <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
-            <div class="icon-label">
-              {% if session["lingua"] == "inglese": %} 
-                Sign up
-              {% else: %}
-                Iscriviti
-              {% endif %}
-            </div>
-          </a>
-        </div>
-          
-        <div class="col-sm">
-          <a href="{{ url_for('authentication.display_form_login') }}" class="btn custom-button float-left">
-            <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
-            <div class="icon-label">
-              {% if session["lingua"] == "inglese": %} 
-                Sign in
-              {% else: %}
-                Accedi
-              {% endif %}
-            </div>
-          </a>
-        </div>
-      {% else: %}
-        <div class="col-sm">
-          {% if session['actor'] == "admin": %}
-            <a href="{{ url_for('user_area.display_administrative_area') }}" class="btn custom-button float-right">
-              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-              <div class="icon-label">
-                {% if session["lingua"] == "inglese": %} 
-                  Administrative area
-                {% else: %}
-                  Area amministrativa
-                {% endif %}
-              </div>
-            </a>
-          {% elif session['actor'] == "registered user": %}
-            <a href="{{ url_for('user_area.display_user_area') }}" class="btn custom-button float-right">
-              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-              <div class="icon-label">
-                {% if session["lingua"] == "inglese": %} 
-                  User area
-                {% else: %}
-                  Area utente
-                {% endif %}
-              </div>
-            </a>
-          {% endif %}
-        </div>
-
-        <div class="col-sm">
-          <a href="{{ url_for('authentication.logout') }}" class="btn custom-button float-left">
-            <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
-            <div class="icon-label">Log out</div>
-          </a>
-        </div>
-      {% endif %}
-
+      <!-- Colonna 1 -->
       <div class="col-sm">
-        <a href="{{ url_for('sito.cambio_lingua') }}" class="btn custom-button float-left">
-          {% if session["lingua"] == "inglese": %}
-            <i aria-hidden="true">ENGLISH</i>
-            <div class="icon-label">Language</div>
-          {% else %} 
-            <i aria-hidden="true">ITALIANO</i>
-            <div class="icon-label">Lingua</div>
-          {% endif %}
+        <a href="{{ url_for('home') }}" class="btn custom-image-logo float-left">
+            {% if session["tema"] == "dark" %}
+              <img src="{{ url_for('static', filename='img/logo_dark_1.png') }}" alt="Logo" class="fa-logo-2x">
+            {% else %}
+              <img src="{{ url_for('static', filename='img/logo_light_1.png') }}" alt="Logo" class="fa-logo-2x">
+            {% endif %}
         </a>
+      </div>
+
+     <!-- Colonna 2 --> 
+      <div class="col-sm">
+        <center>
+          <a href="{{ url_for('sito.cambio_tema') }}" class="btn custom-button mx-auto">
+            {% if session["tema"] == "dark" %}
+              <i class="bi bi-brightness-high-fill fa-2x"></i>
+            {% else %}
+              <i class="bi bi-moon-fill fa-2x" aria-hidden="true"></i>
+            {% endif %}
+          </a>
+        </center>
+      </div>
+
+      <!-- Colonna 3 -->
+      <div class="col-sm">
+        <div class="row">
+          {% if "actor" not in session: %}
+            <!-- Registrazione -->
+            <div class="col-sm">
+              <a href="{{ url_for('authentication.display_form_registration') }}" class="btn custom-button float-right">
+                <i class="fa fa-user-plus fa-2x" aria-hidden="true"></i>
+                <div class="icon-label">
+                  {% if session["lingua"] == "inglese": %} 
+                    Registration
+                  {% else: %}
+                    Registrati
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+            
+            <!-- Log in -->
+            <div class="col-sm">
+              <a href="{{ url_for('authentication.display_form_login') }}" class="btn custom-button float-left">
+                <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+                <div class="icon-label">
+                  Login
+                </div>
+              </a>
+            </div>
+          {% else: %}
+            <!-- Area utente / Area amministrativa -->
+            <div class="col-sm">
+              {% if session['actor'] == "admin": %}
+                <a href="{{ url_for('user_area.display_administrative_area') }}" class="btn custom-button float-right">
+                  <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                  <div class="icon-label">
+                    {% if session["lingua"] == "inglese": %} 
+                      Administrative area
+                    {% else: %}
+                      Area amministrativa
+                    {% endif %}
+                  </div>
+                </a>
+              {% elif session['actor'] == "registered user": %}
+                <a href="{{ url_for('user_area.display_user_area') }}" class="btn custom-button float-right">
+                  <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                  <div class="icon-label">
+                    {% if session["lingua"] == "inglese": %} 
+                      User area
+                    {% else: %}
+                      Area utente
+                    {% endif %}
+                  </div>
+                </a>
+              {% endif %}
+            </div>
+
+            <!-- Log out -->
+            <div class="col-sm">
+              <a href="{{ url_for('authentication.logout') }}" class="btn custom-button float-left">
+                <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+                <div class="icon-label">Log out</div>
+              </a>
+            </div>
+          {% endif %}
+          
+          <!-- Linguaggio -->
+          <div class="col-sm">
+            <a href="{{ url_for('sito.cambio_lingua') }}" class="btn custom-button float-left">
+              {% if session["lingua"] == "inglese": %}
+                <i aria-hidden="true"><strong>ENGLISH</strong></i>
+                <div class="icon-label">Language</div>
+              {% else %} 
+                <i aria-hidden="true"><strong>ITALIANO</strong></i>
+                <div class="icon-label">Lingua</div>
+              {% endif %}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </nav>

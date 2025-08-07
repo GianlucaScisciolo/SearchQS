@@ -19,7 +19,7 @@ body {
 .fa-logo:hover, 
 .fa-logo-2x:hover, 
 .fa-logo-4x:hover {
-    content: url("/static/img/logo_2.png");
+    content: url("/static/img/logo_dark_2.png");
 }
 
 .fa-q-gate:hover, 

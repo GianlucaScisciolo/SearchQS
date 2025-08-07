@@ -10,11 +10,24 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_theme.css') }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        {% if session["tema"] == "dark" %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_theme.css') }}">
+        {% else %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/light_theme.css') }}">
+        {% endif %}
     </head>
 
     <body>
         {% include 'fragmenttemplate/header.html' %}
+
+        <!--
+            {% if session["tema"] == "dark" %}
+              <i class="fa fa-sun-o fa-2x" aria-hidden="true"></i>
+            {% else %}
+              <i class="fa fa-moon-o fa-2x" aria-hidden="true"></i>
+            {% endif %}
+        -->
     </body>
 </html>
 

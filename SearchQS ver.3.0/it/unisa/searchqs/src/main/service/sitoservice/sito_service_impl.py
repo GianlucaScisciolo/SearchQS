@@ -11,4 +11,22 @@ class SitoServiceImpl(ISitoService):
       else: 
         session["lingua"] = "italiano"
     return {'success': True, 'errors': {}}
-    
+
+  def cambio_tema(self):
+    if "tema" not in session:
+      session["tema"] = "dark"
+    else:
+      if session["tema"] == "light":
+        session["tema"] = "dark"
+      else: 
+        session["tema"] = "light"
+    return {'success': True, 'errors': {}}
+
+
+
+
+
+
+
+
+
