@@ -1,4 +1,5 @@
 from qiskit import transpile
+from qiskit import transpile
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit, transpile
 from qiskit.visualization import plot_histogram, plot_bloch_multivector
 from qiskit_aer import Aer
@@ -38,3 +39,5 @@ print("Numero base 10 casuale: ", decimal_number)
 
 
 random_binary_number_circuit = transpile(random_binary_number_circuit, basis_gates=['cx', 'rx', 'ry', 'rz', 'p'], optimization_level=2)
+
+random_binary_number_circuit = transpile(random_binary_number_circuit, basis_gates=['cx', 'rx', 'ry', 'rz', 'p'], optimization_level=3)

@@ -1,165 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Analisi</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-        {% if session["tema"] == "dark" %}
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_theme.css') }}">
-        {% else %}
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/light_theme.css') }}">
-        {% endif %}
-    </head>
+  <head>
+    <title>Analisi</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    {% if session["tema"] == "dark" %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/dark_theme.css') }}">
+    {% else %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/light_theme.css') }}">
+    {% endif %}
+  </head>
 
-    <body>
-        {% include 'fragmenttemplate/header.html' %}
-        <br>
-        <div class="container">
-            <h2>
-                {% if session["lingua"] == "inglese": %} 
-                    Quantum system: 
-                {% else: %}
-                    Sistema quantistico: 
-                {% endif %}
-                {{params['q_system'].name}}
-                <br>
-                {% if session["lingua"] == "inglese": %} 
-                    Analysis performed on 
-                {% else: %}
-                    Analisi eseguita il 
-                {% endif %} 
-                {{params['analysis'].save_date}}
-            </h2>
-            {% if params['results'] != [] %}
-                {% for r in params['results'] %}
-                    <p>
-                        <h4>File: {{r['source_file'].path}}</h4>
-                        <span class="more" id="more-{{loop.index}}" style="display: none;">
-                            <pre>
-{{r['source_file'].get_code_from_file()}}
-                            </pre>
-                            <h6>
-                                {% if session["lingua"] == "inglese": %} 
-                                    Static analysis
-                                {% else: %}
-                                    Analisi statica
-                                {% endif %}
-                            </h6>
-                            {% if session["lingua"] == "inglese": %} 
-                                Result obtained:
-                            {% else: %}
-                                Risultato ottenuto:
-                            {% endif %}
-                            <pre>
+  <body>
+    {% include 'fragmenttemplate/header.html' %}
+    <br>
+    
+    <div class="container">
+      <input type="hidden" name="lingua" id="lingua" value="{{session['lingua']}}">
+      <h2>{{ ("Quantum system: " if session["lingua"] == "inglese" else "Sistema quantistico: ") + params['q_system'].name }}</h2>
+      <h2>{{ ("Analysis performed on " if session["lingua"] == "inglese" else "Analisi eseguita il ") + params['analysis'].save_date }}</h2>
+      
+      {% if params['results'] != [] %}
+        {% for r in params['results'] %}
+          <input type="hidden" name="code" id="code-{{loop.index}}" value="{{r['source_file'].get_code_from_file()}}">
+          <input type="hidden" name="result-static-analysis" id="result-static-analysis-{{loop.index}}" value="{{r['result_static_analysis']}}">
+          <input type="hidden" name="results-dynamic-analysis" id="results-dynamic-analysis-{{loop.index}}" value="{{r['results_dynamic_analysis']}}">
+          <h4>File: {{r['source_file'].path}}</h4>
+          <div class="row" id="div-show-buttons-{{loop.index}}">
+            <div class="col-sm text-right" id="div-show-code-button-{{loop.index}}">
+              <button onclick="showCode('{{loop.index}}')" class="custom-button" id="btn-{{loop.index}}">
+                <i class="fa fa-plus fa-2x" id="icon-{{loop.index}}" aria-hidden="true"></i>
+                <div class="icon-label" id="text-{{loop.index}}">
+                  {{ "Show code file" if session["lingua"] == "inglese" else "Mostra codice file" }}
+                </div>
+              </button>
+            </div>
+            <div class="col-sm text-center" id="div-show-static-analysis-button-{{loop.index}}">
+              <button onclick="showStaticAnalysis('{{ loop.index }}')" class="custom-button" id="btn-{{loop.index}}">
+                <i class="fa fa-plus fa-2x" id="icon-{{loop.index}}" aria-hidden="true"></i>
+                <div class="icon-label" id="text-{{loop.index}}">
+                  {{ "Show static analysis results" if session["lingua"] == "inglese" else "Mostra risultato analisi statica" }}
+                </div>
+              </button>
+            </div>
+            <div class="col-sm text-left" id="div-show-dynamic-analysis-button-{{loop.index}}">
+              <button onclick="showDynamicAnalysis('{{loop.index}}')" class="custom-button" id="btn-{{loop.index}}">
+                <i class="fa fa-plus fa-2x" id="icon-{{loop.index}}" aria-hidden="true"></i>
+                <div class="icon-label" id="text-{{loop.index}}">
+                  {{ "Show dynamic analysis results" if session["lingua"] == "inglese" else "Mostra risultato analisi dinamica" }}
+                </div>
+              </button>
+            </div>
+          </div>
+          
+          <div class="row" id="div-code-{{loop.index}}" style="display: none;">
+            <div class="col-sm text-left">
+              <p>
+                <span class="more" id="more-{{loop.index}}">
+                  <pre>
+{{r['source_file'].get_code_from_file()}}                    
+                  </pre>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="row" id="div-result-static-analysis-{{loop.index}}" style="display: none;">
+            <div class="col-sm text-left">
+              <p>
+                <span class="more" id="more-{{loop.index}}">
+                  <h6>{{ "Static analysis" if session["lingua"] == "inglese" else "Analisi statica" }}</h6>
+                  <strong>{{ "Result obtained:" if session["lingua"] == "inglese" else "Risultato ottenuto:" }}</strong>
+                  <br>
+                  <pre>
 {{r['result_static_analysis']}}
-                            </pre>
-                            <h6>
-                                {% if session["lingua"] == "inglese": %} 
-                                    Dynamic analysis
-                                {% else: %}
-                                    Analisi dinamica
-                                {% endif %}
-                            </h6>
-                            {% for rda in r['results_dynamic_analysis'] %}
-                                {% if session["lingua"] == "inglese": %} 
-                                    Quantum circuit number 
-                                {% else: %}
-                                    Circuito quantistico numero 
-                                {% endif %}    
-                                {{rda.number_q_circuit}}
-                                <br>
-                                {% if session["lingua"] == "inglese": %} 
-                                    Quantum circuit name: 
-                                {% else: %}
-                                    Nome circuito quantistico: 
-                                {% endif %}
-                                <br>
-                                {% if session["lingua"] == "inglese": %} 
-                                    Associate matrix:
-                                {% else: %}
-                                    Matrice associata:
-                                {% endif %}
-                                <br>
-                                <pre>
+                  </pre>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="row" id="div-results-dynamic-analysis-{{loop.index}}" style="display: none;">
+            <div class="col-sm text-left">
+              <p>
+                <span class="more" id="more-{{loop.index}}">
+                  <h6>{{ "Dynamic analysis" if session["lingua"] == "inglese" else "Analisi dinamica" }}</h6>
+                  {% for rda in r['results_dynamic_analysis'] %}
+                    <strong>{{ "Quantum circuit number" if session["lingua"] == "inglese" else "Circuito quantistico numero"}} {{(rda.number_q_circuit)}}</strong> 
+                    <br>
+                    <strong>{{"Quantum circuit name:" if session["lingua"] == "inglese" else "Nome circuito quantistico:"}}</strong> {{rda.name_q_circuit}}
+                    <br>
+                    <strong>{{"Associate matrix:" if session["lingua"] == "inglese" else "Matrice associata:" }}</strong>
+                    <br>
+                    <pre>
 {{rda.matrix}}
-                                </pre>
-                                <br>
-                                {% if session["lingua"] == "inglese": %} 
-                                    Result obtained:
-                                {% else: %}
-                                    Risultato ottenuto:
-                                {% endif %}
-                                <br>
-                                <pre>
+                    </pre>
+                    <br>
+                    <strong>{{ "Result obtained:" if session["lingua"] == "inglese" else "Risultato ottenuto:" }}</strong>
+                    <br>
+                    <pre>
 {{rda.result}}
-                                </pre>
-                                <br> <br>
-                            {% endfor %}
-                        </span>
-                    </p>
-                    <button onclick="readMoreReadLessText('{{loop.index}}')" class="custom-button" id="btn-{{loop.index}}">
-                        <input 
-                            type="hidden" 
-                            id="input-lingua" 
-                            value="{{ 'inglese' if session.get('lingua') == 'inglese' else 'italiano' }}"
-                        />
-                        <i class="fa fa-plus fa-2x" id="icon-{{loop.index}}" aria-hidden="true"></i>
-                        <div class="icon-label" id="text-{{loop.index}}">
-                            {% if session["lingua"] == "inglese": %} 
-                                Show code file
-                            {% else: %}
-                                Mostra codice file
-                            {% endif %}
-                        </div>
-                    </button>
-                {% endfor %}
-            {% else %}
-                {% if session["lingua"] == "inglese": %} 
-                    No analysis results present.
-                {% else: %}
-                    Nessun risultato dell'analisi presente.
-                {% endif %}
-            {% endif %}
-            <br>
-            <center>
-                <form>
-                    <input type="hidden" name="name_transpilation" id="name_transpilation" value="{{params['analysis'].name_transpilation}}">
-                    <button type="submit" formaction="{{url_for('analysis.display_form_deletion_analysis')}}" formmethod="post" class="custom-button">
-                        <input type="hidden" name="id_qs" id="id_qs" value="{{params['q_system'].id}}">
-                        <input type="hidden" name="name_qs" id="name_qs" value="{{params['q_system'].name}}">
-                        <input type="hidden" name="save_date" id="save_date" value="{{params['analysis'].save_date}}">
-                        <input type="hidden" name="id_analysis" id="id_analysis" value="{{params['analysis'].id}}">
-                        <input type="hidden" name="name_transpilation" id="name_transpilation" value="{{params['analysis'].name_transpilation}}">
-                        <input type="hidden" name="route" id="route" value="analysis.display_analysis">
-                        <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-                        <div class="icon-label">
-                            {% if session["lingua"] == "inglese": %} 
-                                Delete analysis
-                            {% else: %}
-                                Elimina analisi
-                            {% endif %}
-                        </div>
-                    </button>
-                    <button type="submit" formaction="{{url_for('analysis.display_analyses_transpilation_selected')}}" formmethod="post" class="custom-button">
-                        <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-                        <div class="icon-label">
-                            {% if session["lingua"] == "inglese": %} 
-                                Go back
-                            {% else: %}
-                                Torna indietro
-                            {% endif %}
-                        </div>
-                    </button>
-                </form>
-            </center>
-        </div>
-        <script src="{{ url_for('static', filename='js/action_form.js') }}"></script>
-    </body>
+                    </pre>
+                    <br> <br>
+                  {% endfor %}
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="row" id="div-hide-buttons-{{loop.index}}">
+
+          </div>
+        {% endfor %}
+      {% else %}
+        {% if session["lingua"] == "inglese": %}No analysis results present.{% else: %}Nessun risultato dell'analisi presente.{% endif %}
+      {% endif %}
+      <br>
+      <center>
+        <form>
+          <input type="hidden" name="name_transpilation" id="name_transpilation" value="{{params['analysis'].name_transpilation}}">
+          <button type="submit" formaction="{{url_for('analysis.display_form_deletion_analysis')}}" formmethod="post" class="custom-button">
+            <input type="hidden" name="id_qs" id="id_qs" value="{{params['q_system'].id}}">
+            <input type="hidden" name="name_qs" id="name_qs" value="{{params['q_system'].name}}">
+            <input type="hidden" name="save_date" id="save_date" value="{{params['analysis'].save_date}}">
+            <input type="hidden" name="id_analysis" id="id_analysis" value="{{params['analysis'].id}}">
+            <input type="hidden" name="name_transpilation" id="name_transpilation" value="{{params['analysis'].name_transpilation}}">
+            <input type="hidden" name="route" id="route" value="analysis.display_analysis">
+            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+            <div class="icon-label">
+              {% if session["lingua"] == "inglese": %}Delete analysis{% else: %}Elimina analisi{% endif %}
+            </div>
+          </button>
+          <button type="submit" formaction="{{url_for('analysis.display_analyses_transpilation_selected')}}" formmethod="post" class="custom-button">
+            <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
+            <div class="icon-label">
+              {% if session["lingua"] == "inglese": %}Go back{% else: %}Torna indietro{% endif %}
+            </div>
+          </button>
+        </form>
+      </center>
+    </div>
+    <script src="{{ url_for('static', filename='js/action_form.js') }}"></script>
+  </body>
 </html>

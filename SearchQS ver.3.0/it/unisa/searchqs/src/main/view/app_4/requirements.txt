@@ -152,3 +152,9 @@ NumeroCasuale
 utils
 NumeroPseudoCasuale
 Teletrasporto1Qubit
+Teletrasporto1Frase
+Clonazione1Frase
+NumeroCasuale
+utils
+NumeroPseudoCasuale
+Teletrasporto1Qubit
