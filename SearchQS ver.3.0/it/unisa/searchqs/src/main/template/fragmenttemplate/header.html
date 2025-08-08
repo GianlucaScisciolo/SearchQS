@@ -53,20 +53,9 @@
               </a>
             </div>
           {% else: %}
-            <!-- Area utente / Area amministrativa -->
+            <!-- Area utente -->
             <div class="col-sm">
-              {% if session['actor'] == "admin": %}
-                <a href="{{ url_for('user_area.display_administrative_area') }}" class="btn custom-button float-right">
-                  <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-                  <div class="icon-label">
-                    {% if session["lingua"] == "inglese": %} 
-                      Administrative area
-                    {% else: %}
-                      Area amministrativa
-                    {% endif %}
-                  </div>
-                </a>
-              {% elif session['actor'] == "registered user": %}
+              {% if session['actor'] == "registered user": %}
                 <a href="{{ url_for('user_area.display_user_area') }}" class="btn custom-button float-right">
                   <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                   <div class="icon-label">
