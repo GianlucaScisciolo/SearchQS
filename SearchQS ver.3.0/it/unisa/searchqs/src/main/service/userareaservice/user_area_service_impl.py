@@ -50,7 +50,7 @@ class UserAreaServiceImpl(IUserAreaService):
             id_source_files_results = set()
             id_q_systems = qs_dao.read_id_q_systems_by_email_registered_user(session['email'])
             for id_qs in id_q_systems:
-                id_analyses_qs = a_dao.read_id_by_id_q_system(id_qs)
+                id_analyses_qs = a_dao.read_id_analyses_by_id_q_system(id_qs)
                 id_analyses.extend(id_analyses_qs)
             for id_a in id_analyses:
                 id_source_files_results_analysis = r_dao.read_id_source_files_by_id_analysis(id_a)
