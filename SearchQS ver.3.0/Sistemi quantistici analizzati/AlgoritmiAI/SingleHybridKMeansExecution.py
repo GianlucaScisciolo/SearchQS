@@ -28,19 +28,19 @@ df = pd.DataFrame(data)
 file_name = "k_means_data.csv"
 df.to_csv(file_name, index=False)
 (bc, gc, oc, pc) = (-0.5000, 0.5000), (0.5000, 0.5000), (-0.5000, -0.5000), (0.5000, -0.5000)
-# Otteniamo e visualizziamo i punti e i centroidi
+# We obtain and display the points and centroids
 k_means_data = pd.read_csv('k_means_data.csv', usecols=['ID', 'X', 'Y', 'Cluster'])
 utils.plt_show_points_and_centroids(k_means_data, plt, bc, gc, oc, pc)
 
 phi_list = [((x + 1) * pi / 2) for x in [float(points[0][1]), bc[0], gc[0], oc[0], pc[0]]]
 theta_list = [((x + 1) * pi / 2) for x in [float(points[0][2]), bc[1], gc[1], oc[1], pc[1]]]
-# Creazione del circuito quantistico
+# Creation of the quantum circuit
 qr = QuantumRegister(3, 'qr')
 cr = ClassicalRegister(1, 'cr')
 quantum_point_classification_circuit = QuantumCircuit(qr, cr)
-# Creazione di una lista per contenere i risultati
+# Creating a list to contain the results
 results_list = []
-# Stima delle distanze dal nuovo punto ai centroidi
+# Estimation of distances from the new point to the centroids
 for i in range(1, 5):
     quantum_point_classification_circuit.h(qr[2])
     quantum_point_classification_circuit.u(theta_list[0], phi_list[0], 0, qr[0])        
@@ -48,21 +48,21 @@ for i in range(1, 5):
     quantum_point_classification_circuit.cswap(qr[2], qr[0], qr[1])
     quantum_point_classification_circuit.h(qr[2])
     quantum_point_classification_circuit.measure(qr[2], cr[0])
-    # Resettiamo il qubit in modo da poterlo riutilizzare di nuovo, poiché consuma meno memoria e spazio.
+    # We reset the qubit so that we can reuse it again, as it consumes less memory and space.
     quantum_point_classification_circuit.reset(qr)
-    # Esecuzione del circuito quantistico
+    # Quantum circuit execution
     job = transpile(quantum_point_classification_circuit, backend=backend)
     shots = 1024
     result = backend.run(job, shots=shots).result()
-    counts = result.get_counts(quantum_point_classification_circuit) # counts su |1>
-    # Aggiungi un controllo per verificare se la chiave '1' esiste
+    counts = result.get_counts(quantum_point_classification_circuit) # counts on |1>
+    # Let's add a check to verify if the key ‘1’ exists
     if '1' in counts:
         results_list.append(counts['1'])
     else:
         results_list.append(0)
-# Creazione di una lista contenente le classi possibili
+# Creating a list containing possible classes
 class_list = ['Blue', 'Green', 'Orange', 'Purple']
-# Scopriamo a quale classe appartiene il nuovo punto dati secondo il nostro algoritmo quantistico di stima della distanza
+# Let's find out which class the new data point belongs to according to our quantum distance estimation algorithm.
 quantum_point_classification = class_list[results_list.index(min(results_list))]
 new_cluster = quantum_point_classification
 points[0] = (points[0][0], points[0][1], points[0][2], new_cluster)
@@ -77,7 +77,7 @@ quantum_point_classification_circuit.draw(output = 'mpl')
 
 utils.plt_show_points_and_centroids(k_means_data, plt, bc, gc, oc, pc)
 
-# Generiamo casualmente 64 punti
+# We randomly generate 64 points
 n_samples = 64
 centers = 1
 cluster_std = 0.60
@@ -100,10 +100,10 @@ elif color_points == "Purple":
     c1 = pc
     utils.plt_show_points_and_centroids(k_means_data, plt, c2, c2, c2, c1)
 
-# Selezioniamo i dati per il clustering
+# We select the data for clustering
 cluster_data = k_means_data[['X', 'Y']]
 num_qubits = int(np.ceil(np.log2(len(cluster_data))))
-# otteniamo il nuovo centroide
+# we obtain the new centroid
 c1 = utils.get_new_centroid(k_means_data, c1)
 if color_points == "Blue":
     utils.plt_show_points_and_centroids(k_means_data, plt, c1, c2, c2, c2)
